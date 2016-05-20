@@ -43,8 +43,8 @@ PictureRenderer.prototype.render = function(sprite) {
     if (!sprite.texture.valid) {
         return;
     }
-	//you can add different render modes here
-	//multiple shaders and stuff
+    //you can add different render modes here
+    //multiple shaders and stuff
     this._renderNormal(sprite, this.normalShader);
 };
 
@@ -55,14 +55,14 @@ PictureRenderer.prototype._renderNormal = function(sprite, shader) {
     var quad = this.quad;
     var uvs = sprite.texture._uvs;
 
-	//sprite already has calculated the vertices. lets transfer them to quad
+    //sprite already has calculated the vertices. lets transfer them to quad
     var vertices = quad.vertices;
     for (var i=0;i<8;i++) {
         quad.vertices[i] = sprite.vertexData[i];
     }
 
     //SpriteRenderer works differently, with uint32 UVS
-	//but for our demo float uvs are just fine
+    //but for our demo float uvs are just fine
     quad.uvs[0] = uvs.x0;
     quad.uvs[1] = uvs.y0;
     quad.uvs[2] = uvs.x1;
@@ -78,28 +78,28 @@ PictureRenderer.prototype._renderNormal = function(sprite, shader) {
     var frame = sprite.texture.frame;
     var base = sprite.texture.baseTexture;
     var clamp = this._tempClamp;
-	//clamping 0.5 pixel from each side to reduce border artifact
-	//this is our plugin main purpose
+    //clamping 0.5 pixel from each side to reduce border artifact
+    //this is our plugin main purpose
     clamp[0] = frame.x / base.width + 0.5 / base.realWidth;
     clamp[1] = frame.y / base.height + 0.5 / base.realWidth;
     clamp[2] = (frame.x + frame.width) / base.width - 0.5 / base.realWidth;
     clamp[3] = (frame.y + frame.height) / base.height - 0.5 / base.realWidth;
-	//take a notice that size in pixels is realWidth,realHeight
-	//width and height are divided by resolution
+    //take a notice that size in pixels is realWidth,realHeight
+    //width and height are divided by resolution
     shader.uniforms.uTextureClamp = clamp;
 
     var color = this._tempColor;
     PIXI.utils.hex2rgb(sprite.tint, color);
     var alpha = sprite.worldAlpha;
-	//premultiplied alpha tint
-	//of course we could do that in shader too
+    //premultiplied alpha tint
+    //of course we could do that in shader too
     color[0] *= alpha;
     color[1] *= alpha;
     color[2] *= alpha;
     color[3] = alpha;
     shader.uniforms.uColor = color;
 
-	//bind texture to unit 0, our default sampler unit
+    //bind texture to unit 0, our default sampler unit
     renderer.bindTexture(base, 0);
     quad.draw();
 };
