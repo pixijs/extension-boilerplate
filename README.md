@@ -6,7 +6,7 @@ Just copy these files to start your own pixi plugin.
 
 Example plugin takes care of border artifacts. Though, it does not use sprite batching nor multitexturing. Useful for large scaled sprites.
 
-![Usage example](https://pixijs.github.io/examples/index.html?s=cookbook&f=border-artifacts.js&title=Border%20artifacts&plugins=pixi-picture&v=)
+[Usage example](https://pixijs.github.io/examples/index.html?s=cookbook&f=border-artifacts.js&title=Border%20artifacts&plugins=pixi-picture&v=)
 
 ## How to build
 
