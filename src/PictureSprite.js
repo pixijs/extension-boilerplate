@@ -23,15 +23,8 @@ module.exports = PictureSprite;
  */
 PictureSprite.prototype._renderWebGL = function (renderer)
 {
-    //copy of PIXI.Sprite v4 behaviour
-    if(this.transform.updated || this.textureDirty)
-    {
-        this.textureDirty = false;
-        // set the vertex data
-        this.calculateVertices();
-    }
+    this.calculateVertices();
 
-    //use different plugin for rendering
     renderer.setObjectRenderer(renderer.plugins.picture);
     renderer.plugins.picture.render(this);
 };
