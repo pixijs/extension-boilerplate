@@ -1,12 +1,23 @@
 # pixi-plugin-example
 
-Learn the way of making plugins for pixi.js version 4.
+Learn the ways of making renderer plugins for pixi.js of version 4.
+
+Currently supports only ES5 + browserify, gonna add more dialects later. 
+
+## getting started
 
 Just copy these files to start your own pixi plugin.
 
-Example plugin takes care of border artifacts. Though, it does not use sprite batching nor multitexturing. Useful for large scaled sprites.
+Example plugin just renders single sprite
 
-[Usage example](http://pixijs.github.io/examples/#/picture/border-artifacts.js)
+## Usage example
+
+```
+// create a sprite
+var sprite = new PIXI.Sprite();
+// set the renderer plugin
+sprite.pluginName = 'picture';
+```
 
 ## How to build
 

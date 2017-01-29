@@ -1,6 +1,6 @@
 {
   "name": "pixi-plugin-example",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pixi.js example renderer plugin. Clamps textures to reduce border artifacts.",
   "author": "Ivan Popelyshev",
   "contributors": [
