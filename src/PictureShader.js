@@ -18,7 +18,7 @@ function PictureShader(gl)
     this.bind();
     //default tint
     //Its an example, actually PictureRenderer takes care of this stuff
-    this.uniforms.uColor = new Float32Array(1,1,1,1);
+    this.uniforms.uColor = new Float32Array([1.,1.,1.,1.]);
 }
 
 PictureShader.prototype = Object.create(PIXI.Shader.prototype);
