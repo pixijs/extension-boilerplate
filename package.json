@@ -1,12 +1,16 @@
 {
   "name": "pixi-plugin-example",
-  "version": "1.0.2",
-  "description": "Pixi.js example renderer plugin. Clamps textures to reduce border artifacts.",
+  "version": "2.0.0",
+  "description": "Example of PixiJS plugin",
   "author": "Ivan Popelyshev",
   "contributors": [
     "Ivan Popelyshev <ivan.popelyshev@gmail.com>"
   ],
-  "main": "./src/index.js",
+  "main": "./dist/pixi-plugin-example.js",
+  "module": "./lib/pixi-plugin-example.es.js",
+  "bundle": "./dist/pixi-plugin-example.umd.js",
+  "namespace": "PIXI.example",
+  "types": "./index.d.ts",
   "homepage": "http://www.pixijs.com/",
   "bugs": "https://github.com/pixijs/pixi-plugin-example/issues",
   "license": "MIT",
@@ -15,46 +19,85 @@
     "url": "https://github.com/pixijs/pixi-plugin-example.git"
   },
   "scripts": {
-    "clean": "rimraf bin && mkdirp bin",
-    "prestart": "npm run clean",
-    "start": "parallelshell \"npm run watch:lint\" \"npm run watch\"",
-    "watch": "pixify -o pixi-picture -w",
-    "watch:lint": "watch \"jshint --reporter=scripts/reporter.js scripts src test || exit 0\" src",
-    "lint": "jshint --reporter=scripts/reporter.js scripts src",
-    "prebuild": "npm run lint && npm run clean",
-    "build": "pixify -o pixi-picture",
-    "docs": "jsdoc -c scripts/jsdoc.conf.json -R README.md"
+    "clean": "rimraf dist/* lib/* compile",
+    "start": "run-s watch",
+    "watch": "rollup -cw",
+    "prebuild": "run-s clean types",
+    "build": "rollup -c",
+    "postbuild": "run-s build:types",
+    "build:prod": "cross-env NODE_ENV=production run-s build",
+    "prebuild:types": "rimraf compile",
+    "build:types": "tsc --outDir compile && api-extractor run",
+    "lint": "eslint ./src",
+    "types": "tsc -noEmit",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish",
+    "postversion": "run-s build:prod",
+    "postpublish": "git push && git push --tags",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=14",
+    "npm": ">=7"
+  },
+  "clean-package": {
+    "indent": 2,
+    "remove": [
+      "clean-package",
+      "scripts",
+      "engines",
+      "devDependencies",
+      "eslintConfig"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "@pixi/eslint-config"
+    ],
+    "rules": { "linebreak-style": 0 }
   },
   "files": [
-    "bin/",
-    "src/",
-    "CONTRIBUTING.md",
+    "dist/",
+    "lib/",
+    "index.d.ts",
+    "global.d.ts",
     "LICENSE",
     "package.json",
     "README.md"
   ],
-  "dependencies": {
-    "glslify": "^5.0.2"
+  "peerDependencies": {
+    "@pixi/constants": "^6.1.0",
+    "@pixi/core": "^6.1.0",
+    "@pixi/display": "^6.1.0",
+    "@pixi/math": "^6.1.0",
+    "@pixi/mesh": "^6.1.0",
+    "@pixi/utils": "^6.1.0"
   },
   "devDependencies": {
-    "browserify-versionify": "^1.0.6",
-    "del": "^2.2.0",
-    "jaguarjs-jsdoc": "^1.0.1",
-    "jsdoc": "^3.4.0",
-    "jshint": "^2.9.2",
-    "jshint-stylish": "^2.2.0",
-    "jshint-stylish-summary": "^0.1.2",
-    "minimist": "^1.2.0",
-    "mkdirp": "^0.5.1",
-    "parallelshell": "^2.0.0",
-    "pixify": "^1.4.0",
+    "@microsoft/api-extractor": "7.17.1",
+    "@pixi-build-tools/rollup-configurator": "~1.0.11",
+    "@pixi/constants": "^6.1.0",
+    "@pixi/core": "^6.1.0",
+    "@pixi/display": "^6.1.0",
+    "@pixi/eslint-config": "^2.0.1",
+    "@pixi/math": "^6.1.0",
+    "@pixi/mesh": "^6.1.0",
+    "@pixi/utils": "^6.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "clean-package": "^1.0.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.21.0",
+    "npm-run-all": "^4.1.5",
+    "prepend": "=1.0.2",
     "rimraf": "^2.5.3",
-    "watch": "^0.19.1"
-  },
-  "browserify": {
-    "transform": [
-      "glslify",
-      "browserify-versionify"
-    ]
+    "rollup": "^2.50.5",
+    "tslib": "^2.0.1",
+    "typescript": "^4.3.2"
   }
 }
