@@ -1,0 +1,12 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.pixijs-logo {
+    width: 85px;
+    height: 33px;
+    background: url(logo.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: inline-block;
+}

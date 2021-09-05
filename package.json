@@ -36,7 +36,8 @@
     "postversion": "run-s build:prod",
     "postpublish": "git push && git push --tags",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "devserver": "reload -b"
   },
   "publishConfig": {
     "access": "public"
@@ -59,7 +60,9 @@
     "extends": [
       "@pixi/eslint-config"
     ],
-    "rules": { "linebreak-style": 0 }
+    "rules": {
+      "linebreak-style": 0
+    }
   },
   "files": [
     "dist/",
@@ -71,30 +74,33 @@
     "README.md"
   ],
   "peerDependencies": {
-    "@pixi/constants": "^6.1.0",
-    "@pixi/core": "^6.1.0",
-    "@pixi/display": "^6.1.0",
-    "@pixi/math": "^6.1.0",
-    "@pixi/mesh": "^6.1.0",
-    "@pixi/utils": "^6.1.0"
+    "@pixi/constants": "^6.1.2",
+    "@pixi/core": "^6.1.2",
+    "@pixi/display": "^6.1.2",
+    "@pixi/math": "^6.1.2",
+    "@pixi/mesh": "^6.1.2",
+    "@pixi/sprite": "^6.1.2",
+    "@pixi/utils": "^6.1.2"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "7.17.1",
     "@pixi-build-tools/rollup-configurator": "~1.0.11",
-    "@pixi/constants": "^6.1.0",
-    "@pixi/core": "^6.1.0",
-    "@pixi/display": "^6.1.0",
+    "@pixi/constants": "^6.1.2",
+    "@pixi/core": "^6.1.2",
+    "@pixi/display": "^6.1.2",
     "@pixi/eslint-config": "^2.0.1",
-    "@pixi/math": "^6.1.0",
-    "@pixi/mesh": "^6.1.0",
-    "@pixi/utils": "^6.1.0",
+    "@pixi/math": "^6.1.2",
+    "@pixi/mesh": "^6.1.2",
+    "@pixi/utils": "^6.1.2",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "clean-package": "^1.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^7.21.0",
     "npm-run-all": "^4.1.5",
+    "pixi.js": "^6.1.2",
     "prepend": "=1.0.2",
+    "reload": "^3.2.0",
     "rimraf": "^2.5.3",
     "rollup": "^2.50.5",
     "tslib": "^2.0.1",

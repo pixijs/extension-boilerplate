@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/main.css'>
+    <script src="/node_modules/pixi.js/dist/browser/pixi.js"></script>    
+    <script src="/dist/pixi-plugin-example.umd.js"></script>
+</head>
+
+<body>
+    <h1>
+        <a href="https://www.pixijs.com"><img src="assets/blank.gif" class="pixijs-logo" alt="PixiJS Logo"></a>
+        plugin example
+    </h1>
+    <script>
+        // Create the application helper and add its render target to the page
+        let app = new PIXI.Application({ width: 640, height: 360 });
+        document.body.appendChild(app.view);
+
+        // Create the sprite and add it to the stage
+        let sprite = PIXI.Sprite.from('assets/eggHead.png');
+
+        app.stage.addChild(sprite);
+
+        // Add a ticker callback to move the sprite back and forth
+        let elapsed = 0.0;
+        app.ticker.add((delta) => {
+            elapsed += delta;
+            sprite.rotateWithin(640, 360, elapsed);
+        });
+    </script>
+</body>
+
+</html>
