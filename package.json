@@ -36,7 +36,8 @@
     "postversion": "run-s build:prod",
     "postpublish": "git push && git push --tags",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "dev": "vite dev --open /index.html"
   },
   "publishConfig": {
     "access": "public"
@@ -99,6 +100,7 @@
     "rimraf": "^2.5.3",
     "rollup": "^2.50.5",
     "tslib": "^2.0.1",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.2",
+    "vite": "^2.9.13"
   }
 }
