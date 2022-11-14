@@ -1,6 +1,5 @@
 import { DisplayObject } from '@pixi/display';
-import { Filter, FilterState, FilterSystem } from '@pixi/core';
-import { Matrix, Rectangle } from '@pixi/math';
+import { Matrix, Rectangle, Filter, FilterState, FilterSystem } from '@pixi/core';
 
 const tempMatrix = new Matrix();
 const tempRect = new Rectangle();
