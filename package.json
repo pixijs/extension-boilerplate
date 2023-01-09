@@ -1,17 +1,11 @@
 {
-  "name": "@pixi/plugin-boilerplate",
+  "name": "@pixi/rectangle-helpers",
   "version": "3.0.0",
-  "description": "Example of PixiJS plugin",
-  "author": "Ivan Popelyshev",
-  "contributors": [
-    "Ivan Popelyshev <ivan.popelyshev@gmail.com>",
-    "Matt Karl <matt@mattkarl.com>"
-  ],
-  "source": "./src/index.ts",
+  "description": "[Description of extension]",
+  "author": "[Author's name]",
   "main": "./lib/index.js",
   "module": "./lib/index.mjs",
   "types": "./lib/index.d.ts",
-  "bundle": "./dist/pixi-plugin-boilerplate.js",
   "exports": {
     ".": {
       "import": "./lib/index.mjs",
@@ -20,31 +14,21 @@
     }
   },
   "homepage": "https://pixijs.com/",
-  "bugs": "https://github.com/pixijs/plugin-boilerplate/issues",
+  "bugs": "https://github.com/pixijs/extension-boilerplate/issues",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pixijs/plugin-boilerplate.git"
+    "url": "https://github.com/pixijs/extension-boilerplate.git"
   },
   "scripts": {
-    "clean": "rimraf dist/* lib/*",
-    "start": "run-s watch",
-    "watch": "rollup -cw",
-    "prebuild": "run-s clean types",
-    "build": "rollup -c",
-    "postbuild": "run-s build:types",
-    "prebuild:types": "rimraf lib/**.d.ts",
-    "build:types": "tsc --outDir lib --declaration --emitDeclarationOnly",
-    "postbuild:types": "node ./scripts/fix-types",
-    "lint": "eslint ./src ./scripts",
-    "types": "tsc -noEmit",
-    "release:patch": "npm version patch && npm publish",
-    "release:minor": "npm version minor && npm publish",
-    "release:major": "npm version major && npm publish",
-    "postversion": "run-s build",
-    "postpublish": "git push && git push --tags",
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "start": "xs serve",
+    "watch": "xs watch",
+    "build": "xs build",
+    "docs": "xs docs",
+    "lint": "xs lint",
+    "types": "xs types",
+    "release": "xs release",
+    "test": "xs test"
   },
   "publishConfig": {
     "access": "public"
@@ -52,26 +36,6 @@
   "engines": {
     "node": ">=16",
     "npm": ">=8"
-  },
-  "clean-package": {
-    "indent": 2,
-    "remove": [
-      "source",
-      "namespace",
-      "clean-package",
-      "scripts",
-      "engines",
-      "devDependencies",
-      "eslintConfig"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "@pixi/eslint-config"
-    ],
-    "rules": {
-      "linebreak-style": 0
-    }
   },
   "files": [
     "dist/",
@@ -85,13 +49,6 @@
   "devDependencies": {
     "@pixi/core": "^7.0.0",
     "@pixi/display": "^7.0.0",
-    "@pixi/eslint-config": "^4.0.1",
-    "clean-package": "^1.0.1",
-    "eslint": "^8.27.0",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^2.5.3",
-    "rollup": "^3.3.0",
-    "rollup-plugin-esbuild": "^5.0.0",
-    "typescript": "^4.7.0"
+    "@pixi/extension-scripts": "latest"
   }
 }
