@@ -1,47 +1,32 @@
-# PixiJS Plugin Boilerplate
+# PixiJS Extension Boilerplate
 
-Use this project as guidance for creating your own PixiJS plugin.
+This is a simple boilerplate project powered by [PixiJS Extension Scripts](https://github.com/pixijs/extension-scripts). It demonstrates how you can create an extension for PixiJS that works with TypeScript, generates all the necessary build files and supports documentation (with webdoc) and unit-testing (with Jest).
 
-### Getting Started
+## Getting Started
 
-1. Clone or fork this repository.
-2. Update your `package.json` fields:
-  * `name`
-  * `author`
-  * `description`
-  * `version`
-  * `contributors`
-  * `bundle`
-  * `homepage`
-  * `bugs`
-  * `repository`
-3. Update `userConfig` object in `rollup.config.mjs`.
-4. Add your source code to the `src` folder.
-5. Make sure necessary PixiJS packages in `peerDependencies` and `devDependencies`
-6. Modify or remove GlobalMixins from `global.d.ts` (used to mixin types to PixiJS)
-7. Check that project builds `npm run build`
-8. Write a README, and publish your plugin to npm!
-
-### Tips
-
-* When you make changes and want to republish, you can use `npm run release:[patch|minor|major]` to change version of plugin.
-* If you reference `@pixi/layers` or some other plugins, change `rollup.config.mjs` accordingly, otherwise they'll be compiled inside your lib.
-
-## Building
+This project assumes you are familiar with `npm`, `node.js` and **package.json** files.
 
 ```bash
-npm i
+npm install
 npm run build
 ```
 
-## Vanilla JS
+## Structure
 
-All PixiJS v7 plugins has special `iife` build suited for vanilla JavaScript.
-Navigate to `dist/pixi-plugin-boilerplate.js` file.
+| Path | Description |
+|---|---|
+| `./src` | Folder containing the source code for your extension |
+| `./test` | Folder containing the Jest-based unit-tests (i.e., `*.test.ts`) |
+| `./examples` | Folder containing any examples to demonstrate usage |
+| `./global.d.ts` | TypeScript global mixins for PixiJS |
 
-```html
-<script src='lib/pixi.js'></script>
-<script src='lib/pixi-plugin-boilerplate.js'></script>
+
+## Publishing
+
+When you're ready to publish your extension and share with the world, run the following command.
+This will ask you which type of version bump you'd like to do and then do all the necessary steps to build
+and package your extension.
+
+```bash
+npm run release
 ```
-
-All exports can be accessed through `PIXI.plugin` global namespace. Please, do not add plugins to the `PIXI` global, instead use your own (e.g., `PIXI.[namespace]`).

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rectangle Helpers Example</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            body {
+                margin: 0;
+                user-select: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Rectangle Helpers</h1>
+        <script src="https://pixijs.download/dev/pixi.min.js"></script>
+        <script src="../dist/pixi-rectangle-helpers.js"></script>
+        <script>
+            const app = new PIXI.Application({ background: '#999' });
+            document.body.appendChild(app.view);
+
+            const shape = new PIXI.Sprite(PIXI.Texture.WHITE);
+            shape.scale.set(10);
+            shape.x = (app.screen.width - shape.width) / 2;
+            shape.y = (app.screen.height - shape.height) / 2;
+
+            shape.interactive = true;
+            shape.cursor = 'pointer';
+            shape.onclick = () => {
+                const bounds = shape.getBounds();
+                // Expand the bounds by 10 pixels!
+                Object.assign(shape, bounds.expand(10));
+            };
+            app.stage.addChild(shape);
+        </script>
+    </body>
+</html>
