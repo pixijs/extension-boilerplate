@@ -1,8 +1,8 @@
 {
   "name": "@pixi/rectangle-helpers",
   "version": "3.0.0",
-  "description": "Example of PixiJS extension to add to PixiJS's Rectangle class",
-  "author": "Matt Karl <matt@mattkarl.com>",
+  "description": "[Description of extension]",
+  "author": "[Author's name]",
   "main": "./lib/index.js",
   "module": "./lib/index.mjs",
   "types": "./lib/index.d.ts",
